@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>নাম্বার কপি হচ্ছে</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <p>📱 নাম্বার ইনপুট করুন</p>
+        </header>
+        <input type="text" id="currentNumber" readonly>
+        <button onclick="copyNumber()">কপি করুন ✅</button>
+        <div class="status">
+            <div><span id="totalCount">0</span><br>মোট নাম্বার</div>
+            <div><span id="remainingCount">0</span><br>বাকি নাম্বার</div>
+        </div>
+        <div class="log" id="logBox"></div>
+    </div>
+    <footer>
+        <p>ওয়েবসাইট তৈরি করেছেন <strong>MD ATIAR KHAN ATIK</strong> | <a href="https://t.me/atiar59" target="_blank">Telegram: @atiar59</a></p>
+    </footer>
+    <script>
+        let numbers = localStorage.getItem("numbers")?.split(/\n|,|\s/).filter(n => n.trim() !== "");
+        let currentIndex = 0;
+        document.getElementById("totalCount").textContent = numbers.length;
+        document.getElementById("remainingCount").textContent = numbers.length;
+        document.getElementById("currentNumber").value = numbers[0];
+
+        function copyNumber() {
+            const text = numbers[currentIndex];
+            navigator.clipboard.writeText(text).then(() => {
+                const log = document.createElement("div");
+                log.textContent = text + "    " + new Date().toLocaleTimeString();
+                document.getElementById("logBox").prepend(log);
+                currentIndex++;
+                if (currentIndex < numbers.length) {
+                    document.getElementById("currentNumber").value = numbers[currentIndex];
+                } else {
+                    document.getElementById("currentNumber").value = "শেষ!";
+                }
+                document.getElementById("remainingCount").textContent = numbers.length - currentIndex;
+            });
+        }
+    </script>
+</body>
+</html>

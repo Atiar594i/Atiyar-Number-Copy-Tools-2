@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>নাম্বার কপি টুল</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <p>📱 নাম্বার ইনপুট করুন</p>
+        </header>
+        <textarea id="numberInput" placeholder="উদাহরণ: 01711111111, 01822222222
+01933333333"></textarea>
+        <button onclick="startCopy()">শুরু করুন ✨</button>
+    </div>
+    <footer>
+        <p>ওয়েবসাইট তৈরি করেছেন <strong>MD ATIAR KHAN ATIK</strong> | <a href="https://t.me/atiar59" target="_blank">Telegram: @atiar59</a></p>
+    </footer>
+    <script>
+        function startCopy() {
+            const numbers = document.getElementById('numberInput').value;
+            localStorage.setItem("numbers", numbers);
+            window.location.href = "copy.html";
+        }
+    </script>
+</body>
+</html>
